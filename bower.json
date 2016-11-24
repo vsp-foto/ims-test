@@ -1,0 +1,26 @@
+{
+  "name": "ims-test",
+  "homepage": "https://github.com/vsp-foto/ims-test",
+  "authors": [
+    "Vlad <vlad>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "angular": "~1.5.8",
+    "angular-animate": "1.5.8"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  }
+}
