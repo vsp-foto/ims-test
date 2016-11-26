@@ -17,10 +17,11 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "angular": "~1.5.8",
-    "angular-animate": "1.5.8"
+    "angular": "~1.5.9",
+    "angular-animate": "1.5.9",
+    "angular-mocks": "^1.5.9"
   },
   "resolutions": {
-    "angular": "1.5.8"
+    "angular": "~1.5.9"
   }
 }
