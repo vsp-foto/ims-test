@@ -10,12 +10,9 @@
                         'content@': {
                             template: '<div ui-view></div>'
                         },
-                        'header@': {
-                            templateUrl: 'app/shared/header/header.html'
-                        },
-                        'navigation@': {
-                            templateUrl: 'app/shared/navigation/navigation.html',
-                            controller: 'NavigationController',
+                        'navbar@': {
+                            templateUrl: 'app/shared/navbar/navbar.html',
+                            controller: 'NavbarController',
                             controllerAs: 'nav'
                         }
                     }
@@ -25,26 +22,38 @@
                     url: '/notfound',
                     parent: 'root',
                     templateUrl: 'app/shared/notfound.html',
-                    controller: ['AppTitle', function(AppTitle) {
-                        AppTitle.set('Page not found');
-                    }]
+//                    controller: ['AppTitle', function(AppTitle) {
+//                        AppTitle.set('Page not found');
+//                    }]
                 })
 
-
-
-
-                .state('units', {
-                    url: '/units',
+                .state('items', {
+                    url: '/items',
                     parent: 'root',
-                    templateUrl: 'app/components/units/index.html',
-                    controller: 'Units.IndexController',
-                    controllerAs: 'units',
-                    resolve: {
-                        items: function() {
-                            return getMockUnits();
-                        }
-                    }
+                    template: '<div ui-view></div>',
+                    abstract: true
                 })
-                ;
+                
+                .state('items.table', {
+                    url: '/table',
+                    templateUrl: 'app/components/items/table.html'
+                })
+                
+                .state('items.tile', {
+                    url: '/tile',
+                    templateUrl: 'app/components/items/tile.html'
+                })
+                
+                .state('add', {
+                    url: '/add',
+                    parent: 'root',
+                    templateUrl: 'app/components/edit/index.html'
+                })
+                
+                .state('edit', {
+                    url: '/edit/:itemId',
+                    parent: 'root',
+                    templateUrl: 'app/components/edit/index.html'
+                });
     }]);
 })(this, this.angular);
