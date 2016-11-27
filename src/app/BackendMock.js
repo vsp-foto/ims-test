@@ -5,7 +5,17 @@
         'ngMockE2E',
         'LocalStorageModule'
     ])
+    .config(Config)
     .run(Run);
+    
+    
+    Config.$inject = [
+        'localStorageServiceProvider'
+    ];
+    function Config(localStorageServiceProvider) {
+        localStorageServiceProvider.setPrefix('ImsTest');
+    }
+    
     
     Run.$inject = [
         '$httpBackend',

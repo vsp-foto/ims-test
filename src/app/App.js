@@ -10,15 +10,13 @@
     ])
     .config(Config);
     
+    
     Config.$inject = [
         '$locationProvider',
-        'localStorageServiceProvider',
         '$urlRouterProvider'
     ];
-    function Config($locationProvider, localStorageServiceProvider, $urlRouterProvider) {
+    function Config($locationProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
-        
-        localStorageServiceProvider.setPrefix('ImsTest');
         
         $urlRouterProvider
                 .when('/',  '/items/table')
