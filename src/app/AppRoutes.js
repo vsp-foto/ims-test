@@ -9,11 +9,6 @@
                     views: {
                         'content@': {
                             template: '<div ui-view></div>'
-                        },
-                        'navbar@': {
-                            templateUrl: 'app/shared/navbar/navbar.html',
-                            controller: 'NavbarController',
-                            controllerAs: 'nav'
                         }
                     }
                 })
