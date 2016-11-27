@@ -3,6 +3,7 @@
 
     ng.module('ImsTest', [
         'BackendMock',
+        'LocalStorageModule',
         'ngAnimate',
         'ui.bootstrap',
         'ui.router'
@@ -11,10 +12,13 @@
     
     Config.$inject = [
         '$locationProvider',
+        'localStorageServiceProvider',
         '$urlRouterProvider'
     ];
-    function Config($locationProvider, $urlRouterProvider) {
+    function Config($locationProvider, localStorageServiceProvider, $urlRouterProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
+        
+        localStorageServiceProvider.setPrefix('ImsTest');
         
         $urlRouterProvider
                 .when('/',  '/items/table')
