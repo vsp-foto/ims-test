@@ -9,6 +9,7 @@ gulp.task('serve', function() {
             .pipe(webserver({
                 livereload: {enable: true, port: 35728},
                 open: true,
-                port: 3000
+                port: 3000,
+                fallback: 'index.html'
             }));
 });

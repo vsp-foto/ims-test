@@ -47,7 +47,8 @@
                 .state('add', {
                     url: '/add',
                     parent: 'root',
-                    templateUrl: 'app/components/edit/index.html'
+                    templateUrl: 'app/components/edit/index.html',
+                    controller: 'EditController'
                 })
                 
                 .state('edit', {
