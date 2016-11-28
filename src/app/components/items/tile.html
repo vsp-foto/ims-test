@@ -1,3 +1,15 @@
-<div>
-    Tiles
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="anItem in vmItems.list track by anItem .id">
+            <div class="thumbnail">
+                <img ng-src="{{::anItem.img_url}}" alt="">
+                <div class="caption">
+                    <h3>{{::anItem.title}}</h3>
+                    <p>{{::anItem.prop1}}</p>
+                    <p>{{::anItem.prop2}}</p>
+                    <p>{{::anItem.prop3}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,3 +1,20 @@
 <div>
-    Table
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item Title</th>
+                <th style="width: 25%">Property #1 Title</th>
+                <th style="width: 25%">Property #2 Title</th>
+                <th style="width: 25%">Property #3 Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="anItem in ::vmItems.list track by anItem .id">
+                <td><a ui-sref="edit({itemId: anItem.id})">{{::anItem.title}}</a></td>
+                <td>{{::anItem.prop1}}</td>
+                <td>{{::anItem.prop2}}</td>
+                <td>{{::anItem.prop3}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

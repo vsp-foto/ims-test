@@ -19,24 +19,42 @@
     
     Run.$inject = [
         '$httpBackend',
-        'localStorageService'
+        'localStorageService',
+        '_'
     ];
-    function Run($httpBackend, localStorageService) {
+    function Run($httpBackend, localStorageService, _) {
         var STORAGE_KEY = 'storedItems';
         var items = getItemsFromLocalStorage();
+        
+        // Don't mock requests to HTML files
+        $httpBackend.whenGET(/.+\.html$/).passThrough();
+        
+        $httpBackend.whenGET(/\/items\/\w+/).respond(function (method, url, params) {
+            var itemId = getItemIdFromUrl(url);
+            return [200, getItemById(itemId), {}];
+        });
         
         $httpBackend.whenGET('/items').respond(items);
         
         $httpBackend.whenPOST('/items').respond(function(method, url, data) {
             var item = ng.fromJson(data);
-            // TODO: create unique id for new item
+            item.id = _.uniqueId();
             items.push(item);
             saveItemsToLocalStorage(items);
-            return [200, items, {}];
+            return [200, item, {}];
         });
         
-        // Don't mock requests to HTML files
-        $httpBackend.whenGET(/.+\.html$/).passThrough();
+        $httpBackend.whenPUT(/\/items\/\w+/).respond(function (method, url, data) {
+            var itemId = getItemIdFromUrl(url);
+            var modifiedItem = ng.fromJson(data);
+            items.some(function (anItem, i) {
+                if (anItem.id !== itemId) return;
+                items[i] = modifiedItem;
+                return true;
+            });
+            saveItemsToLocalStorage(items);
+            return [200, modifiedItem, {}];
+        });
         
         
         function getItemsFromLocalStorage() {
@@ -52,6 +70,14 @@
         function saveItemsToLocalStorage(items) {
             localStorageService.set(STORAGE_KEY, items);
         }
+        
+        function getItemById(itemId) {
+            return _.findWhere(items, { id: itemId });
+        }
+        
+        function getItemIdFromUrl(url) {
+            return url.match(/\/items\/(\w+)$/)[1];
+        }
     }
     
     function getInitialItemsList() {
@@ -61,14 +87,14 @@
             title: 'Item 1',
             prop1: '54224',
             prop2: 42,
-            description: 'Test item 1.',
+            prop3: 'Test item 1.',
             img_url: ''
         }, {
             id: '2',
             title: 'Item 2',
             prop1: '872142',
             prop2: 422,
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            prop3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             img_url: ''
         }];
     }
