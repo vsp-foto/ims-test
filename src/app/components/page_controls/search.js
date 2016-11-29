@@ -7,14 +7,17 @@
     });
     
     ng.module('ImsTest').controller('SearchController', SearchController);
-    function SearchController() {
+    SearchController.$inject = [
+        'PopupWindows'
+    ];
+    function SearchController(PopupWindows) {
         var ctrl = this;
         
         ctrl.q = '';
         ctrl.search = search;
         
         function search() {
-            
+            PopupWindows.ask('This feature is under construction', { yesBtnTxt: 'OK', noBtnText: null });
         }
     }
 })(this, this.angular);

@@ -13,9 +13,10 @@
         '$attrs',
         '$state',
         '$stateParams',
-        'localStorageService'
+        'localStorageService',
+        'PopupWindows'
     ];
-    function PaginationController($scope, $element, $attrs, $state, $stateParams, localStorageService) {
+    function PaginationController($scope, $element, $attrs, $state, $stateParams, localStorageService, PopupWindows) {
         var ctrl = this;
         
         ctrl.itemsPerPageValues = ['10', '20', '30'];
@@ -23,6 +24,7 @@
         ctrl.page = 1;
         
         ctrl.changeItemsPerPage = changeItemsPerPage;
+        ctrl.underConstruction = underConstruction;
         
         function changeItemsPerPage() {
             localStorageService.set('itemsPerPage', ctrl.itemsPerPage);
@@ -31,6 +33,10 @@
         
         function reload() {
             $state.go($state.current.name, { page: ctrl.page, itemsPerPage: ctrl.itemsPerPage });
+        }
+        
+        function underConstruction() {
+            PopupWindows.ask('This feature is under construction', { yesBtnTxt: 'OK', noBtnText: null });
         }
     };
 })(this, this.angular);

@@ -2,7 +2,7 @@
 <form class="form-horizontal">
     <div class="modal-body" ng-bind-html="text"></div>
     <div class="modal-actions text-center">
-        <button class="btn btn-primary" type="submit" ng-click="$close()">{{yesBtnTxt}}</button>
-        <button class="btn btn-default" type="button" ng-click="$dismiss()">{{noBtnText}}</button>
+        <button class="btn btn-primary" ng-if="yesBtnTxt" type="submit" ng-click="$close()">{{yesBtnTxt}}</button>
+        <button class="btn btn-default" ng-if="noBtnText" type="button" ng-click="$dismiss()">{{noBtnText}}</button>
     </div>
 </form>
