@@ -30,7 +30,7 @@
                 })
                 
                 .state('items.table', {
-                    url: '/table',
+                    url: '/table?page&itemsPerPage',
                     templateUrl: 'app/components/items/table.html',
                     controller: 'ItemsListController',
                     controllerAs: 'vmItems',
@@ -58,6 +58,7 @@
                     parent: 'root',
                     templateUrl: 'app/components/edit/index.html',
                     controller: 'EditController',
+                    controllerAs: 'vmEdit',
                     resolve: {
                         item: function () {
                             return {};

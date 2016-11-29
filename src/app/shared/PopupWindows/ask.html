@@ -1,0 +1,8 @@
+<div class="modal-header" ng-if="header">{{header}}</div>
+<form class="form-horizontal">
+    <div class="modal-body" ng-bind-html="text"></div>
+    <div class="modal-actions text-center">
+        <button class="btn btn-primary" type="submit" ng-click="$close()">{{yesBtnTxt}}</button>
+        <button class="btn btn-default" type="button" ng-click="$dismiss()">{{noBtnText}}</button>
+    </div>
+</form>

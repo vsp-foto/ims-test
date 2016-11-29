@@ -6,7 +6,8 @@
         'LocalStorageModule',
         'ngAnimate',
         'ui.bootstrap',
-        'ui.router'
+        'ui.router',
+        'utils'
     ])
     .config(Config);
     

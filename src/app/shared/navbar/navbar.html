@@ -1,7 +1,11 @@
-<nav>
-    Test task
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="items.table">Test task</a>
+    </div>
     
-    <a ui-sref="items.table" ui-sref-active="active">Items table view</a>
-    <a ui-sref="items.tile" ui-sref-active="active">Items tile view</a>
-    <a ui-sref="add" ui-sref-active="active">Create / add item</a>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="items.table" ui-sref-active="active">Items table view</a></li>
+        <li><a ui-sref="items.tile" ui-sref-active="active">Items tile view</a></li>
+        <li><a ui-sref="add" ui-sref-active="active">Create / add item</a></li>
+    </ul>
 </nav>

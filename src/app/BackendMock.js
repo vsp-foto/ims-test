@@ -34,11 +34,14 @@
             return [200, getItemById(itemId), {}];
         });
         
-        $httpBackend.whenGET('/items').respond(items);
+        $httpBackend.whenGET('/items').respond(function(method, url, data) {
+            // Return items in reverse order - newest first
+            return [200, _.sortBy(items, 'id').reverse(), {}];
+        });
         
         $httpBackend.whenPOST('/items').respond(function(method, url, data) {
             var item = ng.fromJson(data);
-            item.id = _.uniqueId();
+            item.id = createUniqueId();
             items.push(item);
             saveItemsToLocalStorage(items);
             return [200, item, {}];
@@ -54,6 +57,15 @@
             });
             saveItemsToLocalStorage(items);
             return [200, modifiedItem, {}];
+        });
+        
+        $httpBackend.whenDELETE(/\/items\/\w+/).respond(function (method, url, data) {
+            var itemId = getItemIdFromUrl(url);
+            items = items.filter(function (anItem) {
+                return anItem.id !== itemId;
+            });
+            saveItemsToLocalStorage(items);
+            return [200, null, {}];
         });
         
         
@@ -80,17 +92,21 @@
         }
     }
     
+    function createUniqueId() {
+        return Date.now().toString() + parseInt(performance.now() * 1000, 10);
+    }
+    
     function getInitialItemsList() {
         console.log('Generating list for the first time...');
         return [{
-            id: '1',
+            id: createUniqueId(),
             title: 'Item 1',
             prop1: '54224',
             prop2: 42,
             prop3: 'Test item 1.',
             img_url: ''
         }, {
-            id: '2',
+            id: createUniqueId(),
             title: 'Item 2',
             prop1: '872142',
             prop2: 422,

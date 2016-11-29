@@ -26,6 +26,10 @@
             return $http.post('/items', item);
         };
         
+        ItemsService.delete = function (itemId) {
+            return $http.delete('/items/' + itemId);
+        };
+        
         return ItemsService;
         
         function prepareResponse(response) {

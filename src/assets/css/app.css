@@ -1,0 +1,56 @@
+.navbar-nav>li>a.active {
+    border-bottom: 3px solid #02308e;
+}
+
+.tile-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.tile-item .thumbnail {
+    height: 180px;
+    overflow: hidden;
+}
+
+.tile-item h3 {
+    font-size: 20px;
+}
+
+.tile-item p {
+    margin: 0 0 6px;
+}
+
+.has-error .error {
+    color: red;
+}
+
+.modal-actions {
+    padding: 15px;
+}
+
+.page-controls {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.pagination {
+    position: relative;
+    bottom: -2px;
+    margin: 0;
+}
+
+.items-per-page {
+    margin-right: 15px;
+}
+
+.edit-form {
+    border: 1px solid #bbb;
+    margin-left: 15px;
+    padding-bottom: 15px;
+}
+
+.edit-form h2 {
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 23px;
+    padding-bottom: 16px;
+}

@@ -1,48 +1,64 @@
-<div>
-    <form class="form-horizontal" name="editItemForm" novalidate>
-        <h1 ng-if="::vmEdit.isEditMode">Edit item</h1>
-        <h1 ng-if="::!vmEdit.isEditMode">Create new item</h1>
+<div class="row">
+    <form class="form-horizontal col-sm-6 edit-form" name="editItemForm" novalidate>
+        <h2 ng-if="::vmEdit.isEditMode">Edit item</h2>
+        <h2 ng-if="::!vmEdit.isEditMode">Create new item</h2>
         
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': editItemForm.$submitted && editItemForm.title.$invalid}">
             <label for="title" class="col-sm-2 control-label">Title</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="title" ng-model="vmEdit.item.title" required>
+                <input type="text" class="form-control" id="title" name="title" ng-model="vmEdit.item.title" required focus-on-event="focus.title">
+                <div ng-if="vmEdit.showValidations()">
+                    <div class="error" ng-show="editItemForm.title.$error.required">Required field</div>
+                </div>
             </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': editItemForm.$submitted && editItemForm.prop1.$invalid}">
             <label for="prop1" class="col-sm-2 control-label">Value #1</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="prop1" ng-model="vmEdit.item.prop1" required>
+                <input type="text" class="form-control" id="prop1" name="prop1" ng-model="vmEdit.item.prop1" required>
+                <div ng-if="vmEdit.showValidations()">
+                    <div class="error" ng-show="editItemForm.prop1.$error.required">Required field</div>
+                </div>
             </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': editItemForm.$submitted && editItemForm.prop2.$invalid}">
             <label for="prop2" class="col-sm-2 control-label">Value #2</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="prop2" ng-model="vmEdit.item.prop2" required>
+                <input type="text" class="form-control" id="prop2" name="prop2" ng-model="vmEdit.item.prop2" required>
+                <div ng-if="vmEdit.showValidations()">
+                    <div class="error" ng-show="editItemForm.prop2.$error.required">Required field</div>
+                </div>
             </div>
         </div>
         
-        <div class="form-group">
-            <label for="prop3" class="col-sm-2 control-label">Value #2</label>
+        <div class="form-group" ng-class="{'has-error': editItemForm.$submitted && editItemForm.prop3.$invalid}">
+            <label for="prop3" class="col-sm-2 control-label">Value #3</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="prop3" ng-model="vmEdit.item.prop3" required>
+                <input type="text" class="form-control" id="prop3" name="prop3" ng-model="vmEdit.item.prop3" required>
+                <div ng-if="vmEdit.showValidations()">
+                    <div class="error" ng-show="editItemForm.prop3.$error.required">Required field</div>
+                </div>
             </div>
         </div>
         
         <div class="text-right">
-            <button type="button" class="btn btn-default" ng-if="::vmEdit.isEditMode">
+            <button type="button" class="btn btn-default" ng-if="::vmEdit.isEditMode" ng-click="vmEdit.deleteItem()">
                 Delete
             </button>
             
-            <button type="submit" class="btn btn-default" ng-click="vmEdit.save()">Save changes</button>
+            <button type="submit" class="btn btn-default" ng-click="vmEdit.save()">
+                Save changes
+            </button>
             
             <button type="button" class="btn btn-default" ng-class="{disabled: editItemForm.$pristine}" ng-click="vmEdit.resetChanges()" ng-if="::vmEdit.isEditMode">
                 Reset changes
             </button>
             
-            <button type="button" class="btn btn-default" ui-sref="items.table">Cancel</button>
+            <button type="button" class="btn btn-default" ui-sref="items.table">
+                Cancel
+            </button>
         </div>
     </form>
 </div>

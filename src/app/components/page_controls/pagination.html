@@ -1,0 +1,29 @@
+<div class="form-inline">
+    <div class="form-group items-per-page">
+        <label for="itemsPerPage">Items per page</label>
+        <select class="form-control" name="itemsPerPage" id="itemsPerPage" ng-model="$ctrl.itemsPerPage" ng-change="$ctrl.changeItemsPerPage()">
+            <option ng-repeat="val in ::$ctrl.itemsPerPageValues" value="{{::val}}">{{::val}}</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+<!--    <div>
+        <pre>{{$ctrl.itemsPerPage | json}}</pre>
+    </div>-->
+</div>

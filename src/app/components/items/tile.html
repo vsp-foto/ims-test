@@ -1,10 +1,10 @@
-<div class="container-fluid">
+<div class="container-fluid tile-container">
     <div class="row">
-        <div class="col-sm-6 col-md-4" ng-repeat="anItem in vmItems.list track by anItem .id">
+        <div class="col-sm-6 col-md-3 tile-item" ng-repeat="anItem in vmItems.list track by anItem .id">
             <div class="thumbnail">
                 <img ng-src="{{::anItem.img_url}}" alt="">
                 <div class="caption">
-                    <h3>{{::anItem.title}}</h3>
+                    <h3><a title="Edit item" ui-sref="edit({itemId: anItem.id})">{{::anItem.title}}</a></h3>
                     <p>{{::anItem.prop1}}</p>
                     <p>{{::anItem.prop2}}</p>
                     <p>{{::anItem.prop3}}</p>

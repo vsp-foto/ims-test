@@ -1,4 +1,5 @@
 <div>
+    <page-controls></page-controls>
     <table class="table">
         <thead>
             <tr>
@@ -10,7 +11,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="anItem in ::vmItems.list track by anItem .id">
-                <td><a ui-sref="edit({itemId: anItem.id})">{{::anItem.title}}</a></td>
+                <td><a title="Edit item" ui-sref="edit({itemId: anItem.id})">{{::anItem.title}}</a></td>
                 <td>{{::anItem.prop1}}</td>
                 <td>{{::anItem.prop2}}</td>
                 <td>{{::anItem.prop3}}</td>
