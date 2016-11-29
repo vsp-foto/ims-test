@@ -29,16 +29,19 @@
         // Don't mock requests to HTML files
         $httpBackend.whenGET(/.+\.html$/).passThrough();
         
+        // Get single item
         $httpBackend.whenGET(/\/items\/\w+/).respond(function (method, url, params) {
             var itemId = getItemIdFromUrl(url);
             return [200, getItemById(itemId), {}];
         });
         
+        // Get all items
         $httpBackend.whenGET('/items').respond(function(method, url, data) {
             // Return items in reverse order - newest first
             return [200, _.sortBy(items, 'id').reverse(), {}];
         });
         
+        // Create item
         $httpBackend.whenPOST('/items').respond(function(method, url, data) {
             var item = ng.fromJson(data);
             item.id = createUniqueId();
@@ -47,6 +50,7 @@
             return [200, item, {}];
         });
         
+        // Update item
         $httpBackend.whenPUT(/\/items\/\w+/).respond(function (method, url, data) {
             var itemId = getItemIdFromUrl(url);
             var modifiedItem = ng.fromJson(data);
@@ -59,6 +63,7 @@
             return [200, modifiedItem, {}];
         });
         
+        // Delete item
         $httpBackend.whenDELETE(/\/items\/\w+/).respond(function (method, url, data) {
             var itemId = getItemIdFromUrl(url);
             items = items.filter(function (anItem) {

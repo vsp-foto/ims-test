@@ -9,10 +9,11 @@
         'item',
         'isEditMode',
         'ItemsService',
-        'PopupWindows'
+        'PopupWindows',
+        'AppTitle'
     ];
 
-    function EditController($scope, $state, item, isEditMode, ItemsService, PopupWindows) {
+    function EditController($scope, $state, item, isEditMode, ItemsService, PopupWindows, AppTitle) {
         var vmEdit = this;
         var initialState = ng.copy(item);
         
@@ -24,9 +25,15 @@
         vmEdit.save = save;
         vmEdit.showValidations = showValidations;
         
-        $scope.$applyAsync(function() {
-            $scope.$broadcast('focus.title');
-        });
+        init();
+        
+        function init() {
+            $scope.$applyAsync(function() {
+                $scope.$broadcast('focus.title');
+            });
+            
+            AppTitle.set(vmEdit.isEditMode ? 'Edit item' : 'Create item');
+        }
         
         function deleteItem() {
             var msg = 'Are you sure you want to delete <b>' + vmEdit.item.title + '</b>?';
